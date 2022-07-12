@@ -74,23 +74,32 @@ def comics():
 
 		my_char = characters.all(name= search_details['name'],orderBy="name", limit=80)["data"]["results"]
 
+		li_char = []
+
 		for char in my_char:
-			print( char["id"], char["name"], char["thumbnail"]["path"], char["comics"]["available"])
+			li_char.append( str(char["id"])+ char["name"]+ char["thumbnail"]["path"]+ str(char["comics"]["available"]))
+		return json.dumps(li_char)
+
 	if search_details['title']:
 		comics = marvel.comics
 
 		my_comic = comics.all(title= search_details['title'] ,orderBy="title", limit=80)["data"]["results"]
 
+		li_com = []
+
 		for comic in my_comic:
-			print(comic["id"], comic["title"], comic["thumbnail"]["path"], comic["comics"]["available"])
-	
+			li_com.append(str(comic["id"])+ comic["title"]+ comic["thumbnail"]["path"]+ str(comic["comics"]["available"]))
+		return json.dumps(li_com)
+
 	characters = marvel.characters
 
 	my_char = characters.all(orderBy="name", limit=80)["data"]["results"]
-	# print(my_char)
+	
+	li_char = []
 
 	for char in my_char:
-		print(char["id"], char["name"], char["comics"]["available"],char["thumbnail"]["path"])
+		li_char.append( str(char["id"])+char["title"]+str(char["dates"][0]["date"])+char["thumbnail"]["path"]+"****")
+	return json.dumps(li_char)
 
 if __name__ == '__main__':
     app.run(debug=True)
