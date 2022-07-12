@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 
 jwt = JWTManager(app) # initialize JWTManager
-app.config['JWT_SECRET_KEY'] = '21bd7139c8930e60b85d389ec1e12a9d4117728a'
+app.config['JWT_SECRET_KEY'] = 'Your_Secret_Key'
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(days=1) # define the life span of the token
 
 client = PyMongo(app, uri="mongodb+srv://Admin:Nada8597@cluster0.q3hlpvd.mongodb.net/flaskdatabase?retryWrites=true&w=majority")
